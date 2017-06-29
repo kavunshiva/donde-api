@@ -5,6 +5,9 @@ Rails.application.routes.draw do
       resources :devices
       resources :positions
       post '/auth', to: 'auth#create'
+      get '/current_device', to: 'auth#show_device'
+      get '/current_user', to: 'auth#show_user'
+      get '/users/:id/devices', to: 'user_devices#index'
     end
   end
 end
