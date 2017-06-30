@@ -31,6 +31,9 @@ gem 'jwt'
 # allow us to keep secrets from the GitHubs
 gem 'figaro'
 
+# allow us to serialize our data
+gem 'active_model_serializers'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

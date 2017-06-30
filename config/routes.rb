@@ -8,6 +8,7 @@ Rails.application.routes.draw do
       get '/current_device', to: 'auth#show_device'
       get '/current_user', to: 'auth#show_user'
       get '/users/:id/devices', to: 'user_devices#index'
+      get '/devices/:id/positions', to: 'device_positions#index'
     end
   end
 end

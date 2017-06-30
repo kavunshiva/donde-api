@@ -44,5 +44,4 @@ class ApplicationController < ActionController::API
   def token
     request.headers['Authorization']
   end
-
 end
