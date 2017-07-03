@@ -36,16 +36,24 @@ class Api::V1::AuthController < ApplicationController
   end
 
   def show_device
-    render json: {
-      id: current_device.id,
-      device_name: current_device.device_name
-    }
+    if current_device
+      render json: {
+        id: current_device.id,
+        device_name: current_device.device_name
+      }
+    else
+      render json: [{}], status: 404
+    end
   end
 
   def show_user
-    render json: {
-      id: current_user.id,
-      username: current_user.username
-    }
+    if current_user
+      render json: {
+        id: current_user.id,
+        username: current_user.username
+      }
+    else
+      render json: [{}], status: 404
+    end
   end
 end

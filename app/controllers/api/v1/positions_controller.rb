@@ -18,7 +18,9 @@ class Api::V1::PositionsController < ApplicationController
         :device_id
       )
     )
+    position.prev_pos = Position.where(device_id: device_id).order(time: :desc).first.id
     if position.save
+      update_last_pos(position)
       render json: position
     else
       render json: [{}], status: 404
@@ -30,4 +32,11 @@ class Api::V1::PositionsController < ApplicationController
   def position_params(*args)
     params.require(:position).permit(*args)
   end
+
+  def update_last_pos(current_pos)
+    last_pos = Position.where(device_id: device_id).order(time: :desc).second
+    last_pos.next_pos = current_pos.id
+    last_pos.save
+  end
+
 end
