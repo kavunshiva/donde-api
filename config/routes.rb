@@ -7,7 +7,7 @@ Rails.application.routes.draw do
       post '/auth', to: 'auth#create'
       get '/current_device', to: 'auth#show_device'
       get '/current_user', to: 'auth#show_user'
-      get '/users/:id/devices', to: 'user_devices#index'
+      get '/users/:id/devices', to: 'devices#index'
       get '/devices/:id/positions', to: 'device_positions#index'
     end
   end

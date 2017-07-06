@@ -1,6 +1,8 @@
 class Api::V1::DevicesController < ApplicationController
+  before_action :authorize_user!
+
   def index
-    devices = Device.all
+    devices = Device.where(user_id: params[:id])
     render json: devices
   end
 

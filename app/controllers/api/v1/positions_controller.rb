@@ -1,8 +1,8 @@
 class Api::V1::PositionsController < ApplicationController
-  before_action :authorize_device!, only: :create
+  before_action :authorize_device!
 
   def index
-    positions = Position.all
+    positions = Position.where(device_id: params[:id]).order(time: :desc)
     render json: positions
   end
 

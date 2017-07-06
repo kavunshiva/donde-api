@@ -1,4 +1,7 @@
 class Api::V1::AuthController < ApplicationController
+  before_action :authorize_user!, only: [:show_user, :create_device]
+  before_action :authorize_device!, only: :show_device
+
   def create
     if params[:auth].include?(:username)
       create_user
