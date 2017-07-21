@@ -18,9 +18,14 @@ class Api::V1::PositionsController < ApplicationController
         :device_id
       )
     )
-    position.prev_pos = Position.where(device_id: device_id).order(time: :desc).first.id
+    prev_pos_list = Position.where(device_id: device_id).order(time: :desc)
+    if prev_pos_list.count > 0
+      position.prev_pos = prev_pos_list.first.id
+    end
     if position.save
-      update_last_pos(position)
+      if position.prev_pos
+        update_last_pos(position)
+      end
       render json: position
     else
       render json: [{}], status: 404
